@@ -761,7 +761,7 @@ function sendReadReceipt(recipientId) {
 function sendGroups(recipientId) {
   console.log("Sending all groups of sender");
   var groups = "Your current groups are:\n";
-  db.query("select * from usergroups where user_id=" + recipientId, function(err, rows) {
+  db.query("select * from usergroups where user_id='" + recipientId + "'", function(err, rows) {
     groups += rows;
   });
 
