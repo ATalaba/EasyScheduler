@@ -306,6 +306,10 @@ function receivedMessage(event) {
         sendGroups(senderID);
         break;
 
+      case 'add group':
+        addGroup(senderID);
+        break;
+
       case 'my id':
         sendRecipientId(senderID);
         break;
@@ -771,6 +775,24 @@ function sendGroups(recipientId) {
     },
     message: {
       text: groups
+        
+    }
+  };
+
+  callSendAPI(messageData)
+}
+
+function addGroup(recipientId) {
+  console.log("Creating a group for sender");
+  var groups = "Your current groups are:\n";
+  db.execute("insert into usergroups (user_id, group_id) values ('" + recipientId + "', 'Test')")
+
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      text: "Created a group called Test"
         
     }
   };
